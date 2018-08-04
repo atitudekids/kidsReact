@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Form, Header, Item, Label, Text, Card, CardItem, DatePicker } from 'native-base';
 
 
-class ResponsavelCreateForm extends Component {
+class ParentCreateForm extends Component {
 
   constructor(props) {
     super(props);
@@ -96,4 +96,4 @@ const styles = {
   }
 };
 
-export default ResponsavelCreateForm;
+export default ParentCreateForm;
