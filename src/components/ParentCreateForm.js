@@ -3,16 +3,30 @@ import { connect } from 'react-redux';
 import { Button, Form, Header, Item, Label, Text, Card, CardItem, DatePicker } from 'native-base';
 
 
-class ResponsavelForm extends Component {
+class ParentCreateForm extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { chosenDate: new Date() };
+    this.setDate = this.setDate.bind(this);
+  }
+
+  setDate(newDate) {
+    this.setState({ chosenDate: newDate });
+  }
 
   render() {
     return (
       <Form style={styles.form}>
         <Header>
-          <Text>Alocar Criança(s) Na(s) Sala(s)</Text>
+          <Text>Cadastro De Responsável</Text>
         </Header>
         <Item floatingLabel style={styles.item}>
-          <Label>Nome do Responsável</Label>
+          <Label>CPF</Label>
+          {/* <Input value={this.props.phone} /> */}
+        </Item>
+        <Item floatingLabel style={styles.item}>
+          <Label>Nome</Label>
           {/* <Input value={this.props.name} /> */}
         </Item>
 
@@ -82,4 +96,4 @@ const styles = {
   }
 };
 
-export default ResponsavelForm;
+export default ParentCreateForm;

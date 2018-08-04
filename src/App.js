@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import InicialForm from './components/InicialForm';
-import ResponsavelForm from './components/ResponsavelForm';
-import AlocarCrianca from './components/AlocarCrianca';
-import ResponsavelCreateForm from './components/ResponsavelForm';
+import InitialForm from './components/InitialForm';
+import ParentForm from './components/ParentForm';
+import ChildForm from './components/ChildForm';
+import ParentCreateForm from './components/ParentCreateForm';
 
 class App extends Component {
   render() {
     return (
       <View>
-        <ResponsavelCreateForm />
+        <ParentCreateForm />
       </View>
     )
   }

@@ -4,7 +4,7 @@ import { Form, Header, Button, Title, Text, Item, Card, CardItem, Label,
     Footer, FooterTab} from 'native-base';
 
 
-class InicialForm extends Component {
+class InitialForm extends Component {
     onTextPress() {
         Communications.text( `Favor comparecer ao salão kids.`);
     }
@@ -63,4 +63,4 @@ const styles = {
     }
 };
 
-export default InicialForm;
+export default InitialForm;

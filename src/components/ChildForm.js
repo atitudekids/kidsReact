@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Header, List, ListItem, Title,  Card, CardItem, Text
     } from 'native-base';
 
-class AlocarCrianca extends Component {
+class ChildForm extends Component {
 
   render() {
     return (
@@ -34,4 +34,4 @@ const styles = {
   }
 };
 
-export default AlocarCrianca;
+export default ChildForm;
