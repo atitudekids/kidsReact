@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import InitialForm from './components/InitialForm';
-import ParentForm from './components/ParentForm';
 import ChildForm from './components/ChildForm';
-import ParentCreateForm from './components/ParentCreateForm';
+import CheckIn from './components/CheckIn';
+import Chamada from './components/Chamada';
 
 class App extends Component {
   render() {
     return (
       <View>
-        <ParentCreateForm />
+        <ChildForm />
       </View>
     )
   }
