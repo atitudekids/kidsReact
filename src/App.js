@@ -4,14 +4,20 @@ import InitialForm from './components/InitialForm';
 import ParentForm from './components/ParentForm';
 import ChildForm from './components/ChildForm';
 import ParentCreateForm from './components/ParentCreateForm';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
 
 class App extends Component {
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
     return (
-      <View>
-        <ParentCreateForm />
-      </View>
-    )
+      <Provider store={store}>
+        <InitialForm />
+      </Provider>      
+    );
   }
 }
 
