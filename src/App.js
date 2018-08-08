@@ -2,16 +2,21 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import InitialForm from './components/InitialForm';
 import ChildForm from './components/ChildForm';
-import CheckIn from './components/CheckIn';
-import Chamada from './components/Chamada';
+import ParentCreateForm from './components/ParentCreateForm';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
 
 class App extends Component {
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
     return (
-      <View>
-        <ChildForm />
-      </View>
-    )
+      <Provider store={store}>
+        <InitialForm />
+      </Provider>      
+    );
   }
 }
 
