@@ -1,20 +1,55 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Header, Item, Label, Text, Card, CardItem, DatePicker } from 'native-base';
-
+import { Button, Form, Header, Item, Label, Text, Card, CardItem, DatePicker,Input } from 'native-base';
+import { parentCreate } from '../actions';
 
 class ParentCreateForm extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { chosenDate: new Date() };
+    this.state = { chosenDate: new Date(),
+      identificacao: '', nome:'', telefone:'', email:'' };
     this.setDate = this.setDate.bind(this);
+    this.handleIdentificacaoChange = this.handleIdentificacaoChange.bind(this);
+    this.handleNomeChange = this.handleNomeChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleTelefoneChange = this.handleTelefoneChange.bind(this);
+  }
+
+  onButtonPress() {
+    const { nome, identificacao, telefone, email } = this.state;
+
+    this.props.parentCreate({ nome, identificacao, telefone, email });
   }
 
   setDate(newDate) {
     this.setState({ chosenDate: newDate });
   }
 
+  handleIdentificacaoChange(value) {
+    this.setState({
+      identificacao: value.nativeEvent.text
+    });
+  }
+
+  handleNomeChange(value) {
+    this.setState({
+      nome: value.nativeEvent.text
+    });
+  }
+
+  handleEmailChange(value) {
+    this.setState({
+      email: value.nativeEvent.text
+    });
+  }
+
+  handleTelefoneChange(value) {
+    this.setState({
+      telefone: value.nativeEvent.text
+    });
+  }
+  
   render() {
     return (
       <Form style={styles.form}>
@@ -23,16 +58,23 @@ class ParentCreateForm extends Component {
         </Header>
         <Item floatingLabel style={styles.item}>
           <Label>CPF</Label>
-          {/* <Input value={this.props.phone} /> */}
+          <Input type="text" name="identificacao" onChange={ this.handleIdentificacaoChange }
+           value={this.state.identificacao} />
         </Item>
         <Item floatingLabel style={styles.item}>
           <Label>Nome</Label>
-          {/* <Input value={this.props.name} /> */}
+          <Input name="nome" onChange={ this.handleNomeChange }
+            value={this.state.nome} />
         </Item>
-
+        <Item floatingLabel style={styles.item}>
+          <Label>Email</Label>
+          <Input name="email" onChange={ this.handleEmailChange }
+            value={this.state.email} />
+        </Item>
         <Item floatingLabel style={styles.item}>
           <Label>Telefone</Label>
-          {/* <Input value={this.props.phone} /> */}
+          <Input name="telefone" onChange={ this.handleTelefoneChange }
+            value={this.state.telefone} />
         </Item>
 
         <Card style={styles.card}>
@@ -42,7 +84,7 @@ class ParentCreateForm extends Component {
           <CardItem>
             <Item floatingLabel>
               <Label>Nome</Label>
-              {/* <Input value={this.props.name} /> */}
+              <Input value={this.props.name} />
             </Item>
           </CardItem>
           <CardItem>
@@ -63,10 +105,15 @@ class ParentCreateForm extends Component {
             </Item>
           </CardItem>
         </Card>
-        <Button rounded block info style={styles.card}>
+        <Button 
+          rounded block info
+          onPress={this.onButtonPress.bind(this)}
+          style={styles.card} >
           <Text>Salvar</Text>
         </Button>
-        <Button disabled rounded block style={styles.card}>
+        <Button 
+          disabled rounded block
+          style={styles.card} >
           <Text>Adicionar Criança</Text>
         </Button>
       </Form>
@@ -96,4 +143,11 @@ const styles = {
   }
 };
 
-export default ParentCreateForm;
+const mapStateToProps = ({values}) => {
+  const { nome, identificacao, telefone, email } = values;
+  return { nome, identificacao, telefone, email };
+};
+
+export default connect(mapStateToProps, {
+  parentCreate
+})(ParentCreateForm);
