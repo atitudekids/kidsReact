@@ -7,13 +7,14 @@ class ParentCreateForm extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { chosenDate: new Date(),
-      identificacao: '', nome:'', telefone:'', email:'' };
+    this.state = { 
+      chosenDate: new Date(),
+      identificacao: '', 
+      nome: '', 
+      telefone: '', 
+      email: '' 
+    };
     this.setDate = this.setDate.bind(this);
-    this.handleIdentificacaoChange = this.handleIdentificacaoChange.bind(this);
-    this.handleNomeChange = this.handleNomeChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleTelefoneChange = this.handleTelefoneChange.bind(this);
   }
 
   onButtonPress() {
@@ -26,30 +27,6 @@ class ParentCreateForm extends Component {
     this.setState({ chosenDate: newDate });
   }
 
-  handleIdentificacaoChange(value) {
-    this.setState({
-      identificacao: value.nativeEvent.text
-    });
-  }
-
-  handleNomeChange(value) {
-    this.setState({
-      nome: value.nativeEvent.text
-    });
-  }
-
-  handleEmailChange(value) {
-    this.setState({
-      email: value.nativeEvent.text
-    });
-  }
-
-  handleTelefoneChange(value) {
-    this.setState({
-      telefone: value.nativeEvent.text
-    });
-  }
-  
   render() {
     return (
       <Form style={styles.form}>
@@ -58,22 +35,22 @@ class ParentCreateForm extends Component {
         </Header>
         <Item floatingLabel style={styles.item}>
           <Label>CPF</Label>
-          <Input type="text" name="identificacao" onChange={ this.handleIdentificacaoChange }
+          <Input onChangeText={(text) => this.setState({ identificacao: text }) }
            value={this.state.identificacao} />
         </Item>
         <Item floatingLabel style={styles.item}>
           <Label>Nome</Label>
-          <Input name="nome" onChange={ this.handleNomeChange }
+          <Input  onChangeText={ (text) => this.setState({ nome: text })  }
             value={this.state.nome} />
         </Item>
         <Item floatingLabel style={styles.item}>
           <Label>Email</Label>
-          <Input name="email" onChange={ this.handleEmailChange }
+          <Input  onChangeText={ (text) => this.setState({ email: text })  }
             value={this.state.email} />
         </Item>
         <Item floatingLabel style={styles.item}>
           <Label>Telefone</Label>
-          <Input name="telefone" onChange={ this.handleTelefoneChange }
+          <Input  onChangeText={ (text) => this.setState({ telefone: text })  }
             value={this.state.telefone} />
         </Item>
 
@@ -143,8 +120,8 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({values}) => {
-  const { nome, identificacao, telefone, email } = values;
+const mapStateToProps = (state) => {
+  const { nome, identificacao, telefone, email } = state;
   return { nome, identificacao, telefone, email };
 };
 
